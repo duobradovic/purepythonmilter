@@ -226,7 +226,7 @@ class DiscardMessage(BaseVerdictNoData):
 
 
 @attrs.define(auto_attribs=False, kw_only=True)
-class Quarantine(AbstractVerdict):
+class Quarantine(AbstractManipulation):
     """
     Put the message in the hold queue. Only valid at End of Message stage.
     The reason text is ignored by Postfix at the time of writing.
@@ -234,7 +234,10 @@ class Quarantine(AbstractVerdict):
     """
 
     response_char: ClassVar[bytes] = b"q"  # SMFIR_QUARANTINE
-    reason: str
+    reason: str = attrs.field()
+
+    def encode(self) -> Payload:
+        return Payload(self.response_char + self.reason.encode() + b"\x00")
 
 
 @attrs.define(auto_attribs=False, kw_only=True)
