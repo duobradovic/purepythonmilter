@@ -104,7 +104,7 @@ This applies as possible return type of all of the hooks below.
   in order to use the `RemoveRecipient` manipulation.
 - `can_quarantine` (default: False)
 
-  in order to use the `Quarantine` response in `hook_on_end_of_message`.
+  in order to use the `Quarantine` manipulation.
 
 
 ## `Command`s
@@ -142,6 +142,7 @@ This applies as possible return type of all of the hooks below.
       - `ChangeHeader`
     - `ReplaceBodyChunk`
     - `ChangeMailFrom`
+    - `Quarantine`
   - *AbstractResponse*
     - *AbstractVerdict*
       - *BaseVerdictNoData*
@@ -152,7 +153,6 @@ This applies as possible return type of all of the hooks below.
       - *BaseReplyWithCode*
         - `RejectWithCode`
         - `TempFailWithCode`
-      - `Quarantine`
     - *BaseResponseNoData*
       - `Continue`
       - `SkipToNextStage`
